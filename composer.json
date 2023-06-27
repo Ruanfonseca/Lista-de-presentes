@@ -1,0 +1,17 @@
+{
+    "name": "ruan/lista_de_presente",
+    "autoload": {
+        "psr-4": {
+            "Ruan\\ListaDePresente\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ruan fonseca",
+            "email": "whitelook22@outlook.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^2.0"
+    }
+}

@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Kablammo&display=swap');
+.titulo{
+  font-family: "Kablammo";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imagemCENTRAL {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 19px;
+  }
+
+.imgLOGO{
+    border-radius: 50%; 
+}
+.tabela {
+  width: 80%; /* Defina a largura desejada para a div */
+  margin: 0 auto; /* Centralize horizontalmente a div */
+}
+
+.tableINTERNA{
+  width: 100%; /* Ajuste a largura da tabela para preencher a div */
+  max-width: 100%;/* Adicione uma barra de rolagem vertical quando necessário */
+}
+ 
+.my-custom-scrollbar {
+    position: relative;
+    height: 200px;
+    overflow: auto;
+    }
+.table-wrapper-scroll-y {
+    display: block;
+    }
+ /*   
+.BotaoImprimir{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 19px;
+}*/
+.BotaoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 19px;
+}
+
+.BotaoAtualizar {
+  margin-left: 10px;
+}
+
+.BotaoImprimir{
+
+}
