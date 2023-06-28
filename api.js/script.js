@@ -5,7 +5,7 @@ function imprimirPDF() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             // PDF gerado com sucesso
-            var pdfUrl = 'http://localhost:8080/gerarPDF.php';
+            var pdfUrl = 'http://localhost:8087/gerarPDF.php';
             // Abrir o PDF em uma nova aba
             window.open(pdfUrl, '_blank');
         }
@@ -126,3 +126,54 @@ $(document).on("click", ".apagar", function () {
       }
     });
 }
+// Função para adicionar o evento de clique ao botão
+function AdicionarPresente() {
+  // Exibe o modal
+  $('#modal-adicionar').modal('show');
+}
+
+// Evento de submissão do formulário
+$('#form-adicionar').submit(function(event) {
+  event.preventDefault(); // Previne o comportamento padrão de submissão do formulário
+
+  // Obter o valor do campo de entrada
+  var nomePresente = $('#nomepresente').val();
+  var senhaAdicionar = $('#senhaAdicionar').val();
+
+  $.ajax({
+    url: "AdicionarPresente.php",
+    type: "POST",
+    data: { nomePresente: nomePresente, senhaAdicionar: senhaAdicionar },
+    dataType: "json",
+    success: function(response) {
+      if (response.success) {
+        
+        $("#msg-nomepresente").removeClass("alert alert-danger").addClass("alert alert-success").text("O Presente foi adicionado com sucesso.");
+       
+
+        // Fechar o modal após 3 segundos
+        setTimeout(function() {
+          $("#modal-adicionar").modal("hide");
+        }, 60000);
+
+      } else {
+        $("#msg-nomepresente").removeClass("alert alert-success").addClass("alert alert-danger").text("Não foi possível adicionar o presente.");
+        // Fechar o modal após 3 segundos
+        setTimeout(function() {
+          $("#modal-adicionar").modal("hide");
+        }, 60000);
+       }
+    },
+    error: function() {
+      $("#msg-nomepresente").removeClass("alert alert-danger").addClass("alert alert-success").text("O Presente foi adicionado com sucesso.");
+      // Fechar o modal após 3 segundos
+      setTimeout(function() {
+        $("#modal-adicionar").modal("hide");
+      }, 60000);
+    
+    }
+  });
+
+  // Fechar o modal após a conclusão do processamento $('#modal-adicionar').modal('hide');
+  
+});

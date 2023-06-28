@@ -37,7 +37,9 @@ function gerarPDF()
 
             return $presentesEscolhidos;
         } else {
+ 
             return array();
+ 
         }
 
         $conn->close();

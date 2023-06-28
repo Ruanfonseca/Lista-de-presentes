@@ -33,6 +33,7 @@
 .table-wrapper-scroll-y {
     display: block;
     }
+    
  /*   
 .BotaoImprimir{
     display: flex;
@@ -51,6 +52,11 @@
   margin-left: 10px;
 }
 
-.BotaoImprimir{
-
+.BotaoAdicionarPresente{
+  margin-left: 10px;
+}
+.thead-fixed {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
 }

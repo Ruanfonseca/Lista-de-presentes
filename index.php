@@ -88,7 +88,7 @@ $presentesEscolhidos = getPresentesEscolhidos();
   </head>
   <body>
 
-    <h1 class="titulo">Lista de Presentes</h1>
+    <h1 class="titulo">Lista de Presentes do Isaque</h1>
     <br/>
 
     <div class="imagemCENTRAL">
@@ -101,13 +101,15 @@ $presentesEscolhidos = getPresentesEscolhidos();
 
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table tabela tableINTERNA table-bordered table-striped mb-0">
-        <thead>
+        <thead class="thead-fixed">
           <tr>
             <th scope="col">Ordem</th>
             <th scope="col">Nome do Presente</th>
             <th scope="col">Ação</th>
+            <th scope="col">Apagar Presente</th>
           </tr>
         </thead>
+
         <tbody id="tabela-disponiveis">
           <?php
           //se for diferente de vazio, exponha na tela
@@ -178,6 +180,42 @@ $presentesEscolhidos = getPresentesEscolhidos();
   </div>
 </div>
 
+
+
+
+<!-- Modal para adicionar -->
+<div class="modal fade" id="modal-adicionar" tabindex="-1" role="dialog" aria-labelledby="modal-mensagem-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-adicionar-label">Adicionar Presente</h4>
+      </div>
+      
+      <div class="modal-body">
+        <form id="form-adicionar">
+
+        <div class="form-group">
+            <label for="nomepresente">Nome:</label>
+            <input type="nomepresente" class="form-control" id="nomepresente" placeholder="Digite o nome do presente">
+          </div>
+          <div class="form-group">
+            <label for="senhaAdicionar">Senha:</label>
+            <input type="senhaAdicionar" class="form-control" id="senhaAdicionar" placeholder="Digite a senha">
+          </div>
+ 
+            
+          <br/>
+
+          <div class="msg" id="msg-nomepresente"></div>
+
+          <button type="submit" class="btn btn-danger">Adicionar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
     <br/>
     <br/>
     <br/>
@@ -186,7 +224,7 @@ $presentesEscolhidos = getPresentesEscolhidos();
 
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table tabela tableINTERNA table-bordered table-striped mb-0">
-        <thead>
+        <thead class="thead-fixed">
           <tr>
             <th scope="col">Ordem</th>
             <th scope="col">Nome do Presente</th>
@@ -215,19 +253,25 @@ $presentesEscolhidos = getPresentesEscolhidos();
     <br/>
 
     <div class="BotaoContainer">
+  
     <div class="BotaoImprimir">
     <button type="button" class="btn btn-success" onclick="imprimirPDF()">Imprimir</button>
-  </div>
-  <div class="BotaoAtualizar">
-  <button type="button" class="btn btn-success" onclick="Atualizar()">Atualizar</button>
-</div>
+    </div>
+    
+    <div class="BotaoAtualizar">
+    <button type="button" class="btn btn-secondary" onclick="Atualizar()">Atualizar</button>
+    </div>
+
+    <div class="BotaoAdicionarPresente">
+    <button type="button" class="btn btn-warning" onclick="AdicionarPresente()">Adicionar presente</button>
+    </div>
 
       </div>
 
 
     <footer class="bg-light text-center text-lg-start">
       <div class="text-center p-3" style=" background-color: rgba(220,220,220);">
-        <a href = "https://github.com/Ruanfonseca" style="color:#000;">© 2023 RuanFonseca Desenvolvedor</a>
+        <a href = "https://github.com/Ruanfonseca" target="_blank" style="color:#000;">© 2023 RuanFonseca Desenvolvedor</a>
       </div>
     </footer>
 
