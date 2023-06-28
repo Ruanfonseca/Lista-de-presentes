@@ -117,6 +117,7 @@ $presentesEscolhidos = getPresentesEscolhidos();
               echo "<th scope='row'>" . $presente['codigo'] . "</th>";
               echo "<td>" . $presente['presentedisponivel'] . "</td>";
               echo "<td><button type='button' class='btn btn-primary escolha' data-nome='" . $presente['presentedisponivel'] . "'>Escolher</button></td>";
+              echo "<td><button type='button' class='btn btn-danger apagar' data-nome='" . $presente['presentedisponivel'] . "'>Apagar</button></td>";
               echo "</tr>";
             }
           }
@@ -151,6 +152,31 @@ $presentesEscolhidos = getPresentesEscolhidos();
       </div>
     </div>
 
+
+
+<!-- Modal para apagar -->
+<div class="modal fade" id="modal-apagar" tabindex="-1" role="dialog" aria-labelledby="modal-mensagem-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-apagar-label">Apagar o Presente</h4>
+      </div>
+      
+      <div class="modal-body">
+        <form id="form-apagar">
+          <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="senha" class="form-control" id="senha" placeholder="Digite a senha para apagar">
+          </div>
+          <br/>
+          <div class="msg" id="msg-apagar"></div>
+          <button type="submit" class="btn btn-danger">Deletar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
     <br/>
     <br/>
@@ -208,87 +234,6 @@ $presentesEscolhidos = getPresentesEscolhidos();
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-
-    <script>
-
-function imprimirPDF() {
-    // Fazer uma requisição AJAX para o arquivo PHP que gera o PDF
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // PDF gerado com sucesso
-            var pdfUrl = 'http://localhost:8085/gerarPDF.php';
-            // Abrir o PDF em uma nova aba
-            window.open(pdfUrl, '_blank');
-        }
-    };
-    xhttp.open("GET", "gerarPDF.php", true);
-    xhttp.send();
-}
-
-function Atualizar() {
-  location.reload();
-}
-
-
-
-function finalizarEscolha() {
-  var nome = $("#nome").val();
-  var telefone = $("#telefone").val();
-  var presente = $("#modal-mensagem").data("presente");
- 
-  // Enviar os dados para o servidor via AJAX
-  $.ajax({
-    url: "registraESCO.php",
-    type: "POST",
-    data: { nome: nome, telefone: telefone, presente: presente },
-    dataType: "json",
-    success: function (response) {
-      if (response.success) {
-        // Atualizar a tabela de escolhidos
-        var tabelaEscolhidos = $("#tabela-escolhidos");
-        tabelaEscolhidos.empty();
-
-        $.each(response.escolhidos, function (index, escolhido) {
-          tabelaEscolhidos.append("<tr>" +
-            "<th scope='row'>" + escolhido.codigo + "</th>" +
-            "<td>" + escolhido.presentedisponivel + "</td>" +
-            "<td>" + escolhido.nome + "</td>" +
-            "</tr>");
-        });
-        // Exibir mensagem de sucesso
-        $("#msg").removeClass("alert alert-danger").addClass("alert alert-success").text("Escolha de presente finalizada com sucesso.");
-
-        // Fechar o modal após 3 segundos
-        setTimeout(function () {
-          $("#modal-mensagem").modal("hide");
-        },1000000);
-      } else {
-        alert("Erro ao finalizar a escolha de presente. Por favor, tente novamente.");
-      }
-    },
-    error: function () {
-      $("#msg").removeClass("alert alert-danger").addClass("alert alert-success").text("Escolha de presente finalizada com sucesso.");
-      setTimeout(function () {
-          $("#modal-mensagem").modal("hide");
-        },1000000);
-    }
-  });
-}
-
-
-      // Ação do botão "Escolher"
-      $(document).on("click", ".escolha", function () {
-        var nomePresente = $(this).data("nome");
-        $("#modal-mensagem").data("presente", nomePresente);
-        $("#modal-mensagem").modal("show");
-      });
-
-      // Ação do botão "Finalizar"
-      $(document).on("submit", "#form-escolha", function (e) {
-        e.preventDefault();
-        finalizarEscolha();
-      });
-    </script>
+    <script src="api.js/script.js"></script>
   </body>
 </html>
